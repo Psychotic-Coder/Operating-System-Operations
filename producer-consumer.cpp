@@ -20,7 +20,7 @@ void *producer(void *arg){
 	}		
 }
 
-void *cons(void *arg){
+void *consumer(void *arg){
 	while(1){
 		sem_wait(&f);
 		sem_wait(&mutex);
@@ -36,8 +36,7 @@ int main(){
 	sem_init(&f,0,0);
 	sem_init(&e,0,5);
 	pthread_create(&prod,NULL,producer,NULL);
-	pthread_create(&con,NULL,cons,NULL);
-	pthread_join(prod,NULL);
-		
+	pthread_create(&con,NULL,consumer,NULL);
+	pthread_join(prod,NULL);	
 	pthread_join(con,NULL);
 }
