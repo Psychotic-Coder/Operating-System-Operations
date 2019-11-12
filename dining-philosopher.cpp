@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<pthread.h>
 #include<unistd.h>>
-pthread_t p[5];
 
+pthread_t p[5];
 pthread_mutex_t chop[5];
 
 void *chopstick(int n){
@@ -21,7 +21,7 @@ int main(){
 		pthread_mutex_init(&chop[i],NULL);
 	}
 	for(int i = 1;i<6;i++){
-		pthread_create(&p[i],NULL,chopstick,(int )i);
+		pthread_create(&p[i],NULL,chopstick,(int *)i);
 	}
 	for(int i = 1;i<6;i++){
 		pthread_join(p[i],NULL);
